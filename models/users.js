@@ -66,24 +66,6 @@ const getUsers = async () => {
   return db.query("SELECT * FROM user");
 };
 
-/* const updateUser = async (id, newAttributes) => {
-    let newObj = newAttributes;
-
-  if (newAttributes.password) {
-    const password = await hashPassword(newAttributes);
-    newObj = { ...newAttributes, password };
-  }
-
-  const namedAttributes = definedAttributesToSQLSetNoNull(newObj);
-
-  return db
-    .query(`UPDATE user SET ${namedAttributes} WHERE id = :id`, {
-      ...newObj,
-      id,
-    })
-    .then(() => getOneUser(id));
-}; */
-
 const removeUser = async (id, failIfNotFound = true) => {
   const res = await db.query("DELETE FROM user WHERE id = ?", [id]);
   if (res.affectedRows !== 0) {

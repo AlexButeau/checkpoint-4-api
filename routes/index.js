@@ -2,6 +2,7 @@ const { userRouter } = require("./users");
 const { speciesRouter } = require("./species");
 const { rideRouter } = require("./rides");
 const { transportRouter } = require("./transport");
+const { frontLogin } = require("./login");
 
 // eslint-disable-next-line
 module.exports = (app) => {
@@ -9,4 +10,5 @@ module.exports = (app) => {
   app.use("/species", speciesRouter);
   app.use("/rides", rideRouter);
   app.use("/transport", transportRouter);
+  app.use("/login", frontLogin);
 };
