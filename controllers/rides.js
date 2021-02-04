@@ -8,8 +8,10 @@ const {
   removeRide,
 } = require("../models/rides.js");
 
-module.exports.handleGetRides = async (_req, res) => {
-  const rawData = await getRides();
+module.exports.handleGetRides = async (req, res) => {
+  const { start_city, arrival_city } = req.query; // getting the filters from the url
+
+  const rawData = await getRides({ start_city, arrival_city });
   return res.status(200).send(rawData);
 };
 
@@ -35,12 +37,12 @@ module.exports.handleCreateRide = async (req, res) => {
   } = req.body;
 
   const rideData = await createRide({
-    start_city,
+    start_city: start_city.toUpperCase(),
     start_zipcode,
     start_address,
     start_date,
     start_time,
-    arrival_city,
+    arrival_city: arrival_city.toUpperCase(),
     arrival_zipcode,
     arrival_address,
     transport_id,
