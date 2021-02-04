@@ -23,8 +23,8 @@ module.exports.handleLoginNormalUser = async (req, res) => {
     }
     req.session.userId = user.id;
 
-    req.session.save((err) => {
-      if (err) return res.sendStatus(500);
+    req.session.save(() => {
+      // if (err) return res.sendStatus(500);
       const userDetails = {
         id: user.id,
         firstname: user.firstname,
@@ -37,6 +37,7 @@ module.exports.handleLoginNormalUser = async (req, res) => {
       // });
       // return null;
     });
+  } else {
+    return res.status(401).send("Invalid Credentials");
   }
-  return res.status(401).send("Invalid Credentials");
 };
