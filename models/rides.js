@@ -109,22 +109,16 @@ const getRides = async ({ start_city, arrival_city }) => {
       .filter((species) => acceptedSpeciesArray.includes(species.id))
       .map((species) => species.species);
 
-    return { ...ride, transport_name, acceptedSpeciesNameArray };
+    return {
+      ...ride,
+      transport_name,
+      acceptedSpeciesArray,
+      acceptedSpeciesNameArray,
+    };
   });
 
   return result;
 };
-
-/* [
-  {
-    id: 2,
-  
-    transport_id: 1,
-
-    species_id_concat: "1,3",
-  },
-];
- */
 
 const removeRide = async (id, failIfNotFound = true) => {
   const res = await db.query("DELETE FROM ride WHERE id = ?", [id]);

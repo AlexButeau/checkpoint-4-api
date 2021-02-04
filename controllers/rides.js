@@ -31,7 +31,7 @@ module.exports.handleCreateRide = async (req, res) => {
     arrival_zipcode,
     arrival_address,
     transport_id,
-    // user_id, // will have to get that from current id
+    user_id,
     comment,
     accepted_species_array,
   } = req.body;
@@ -46,7 +46,7 @@ module.exports.handleCreateRide = async (req, res) => {
     arrival_zipcode,
     arrival_address,
     transport_id,
-    user_id: 1,
+    user_id,
     comment,
   });
 
